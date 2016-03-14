@@ -13,14 +13,14 @@ defmodule Words do
   end
 
   def keys(sentence) do
-    String.split(sentence)
+    String.split(sentence, [" ", "_"])
     |> Enum.map(fn(word) -> sanitize(word) end)
     |> Enum.reject(fn(word) -> String.length(String.strip(word)) == 0 end)
 
   end
 
   def sanitize(word) do
-    String.replace(word, ~r/[[:punct:]]/, "")
+    String.replace(word, ~r/[&!@&%^:$,]/, "")
     |> String.strip
     |> String.downcase
   end
