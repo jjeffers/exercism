@@ -98,8 +98,10 @@ defmodule Phone do
   """
   @spec pretty(String.t) :: String.t
   def pretty(raw) do
-    raw
-    |> parse_number
-    
+    { area_code, rest } = raw |> number |> String.split_at(3)
+    { prefix, line_number } = String.split_at(rest, 3)
+    "(#{area_code}) #{prefix}-#{line_number}"
   end
+
+
 end
